@@ -15,9 +15,9 @@ using System.Windows.Forms.VisualStyles;
 
 namespace WindowsFormsApp20
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -67,7 +67,7 @@ namespace WindowsFormsApp20
                     password = appPool.ProcessModel.Password;
                 }
                 var virtialDirectory = app.VirtualDirectories.Where(x => x.Path.Equals("/")).FirstOrDefault().PhysicalPath;
-                var testFileName = $"{typeof(Form1).Assembly.GetName()}_WriteTest.txt";
+                var testFileName = $"{typeof(MainForm).Assembly.GetName()}_WriteTest.txt";
                 var userName = appPool.ProcessModel.UserName;
                 var domain = "";
                 if (userName.Contains("\\")) {

@@ -3,7 +3,7 @@ Imports System.IO
 Imports System.Security
 Imports System.Security.AccessControl
 
-Public Class Form1
+Public Class MainForm
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SitesCombo.Items.Clear()
 
@@ -57,8 +57,8 @@ Public Class Form1
             Dim virtialDirectory As String = app.VirtualDirectories.Where(Function(x) x.Path.Equals("/")).FirstOrDefault().PhysicalPath
 
             Dim testFileName = $"{My.Application.Info.AssemblyName}_WriteTest.txt"
-            Dim userName As String = appPool.ProcessModel.UserName
-            Dim domain As String = ""
+            Dim userName = appPool.ProcessModel.UserName
+            Dim domain = ""
             If userName.Contains("\") Then
                 domain = userName.Split("\")(0)
                 userName = userName.Split("\")(1)
@@ -104,9 +104,5 @@ Public Class Form1
                 MessageBox.Show($"実行ユーザーでフォルダーに書き込みできません。{ex.Message}")
             End Try
         End Using
-
-        Dim kjncd As String = "1"
-        Dim query As String = $"select * from HCOMKJN where KJNCD='{kjncd}'"
-
     End Sub
 End Class

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp20
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -44,7 +44,7 @@
             this.AppPoolUserText.Location = new System.Drawing.Point(12, 284);
             this.AppPoolUserText.Name = "AppPoolUserText";
             this.AppPoolUserText.ReadOnly = true;
-            this.AppPoolUserText.Size = new System.Drawing.Size(348, 30);
+            this.AppPoolUserText.Size = new System.Drawing.Size(348, 41);
             this.AppPoolUserText.TabIndex = 25;
             // 
             // label4
@@ -53,7 +53,7 @@
             this.label4.Location = new System.Drawing.Point(8, 258);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
+            this.label4.Size = new System.Drawing.Size(153, 34);
             this.label4.TabIndex = 24;
             this.label4.Text = "実行ユーザー";
             // 
@@ -63,7 +63,7 @@
             this.AppPoolText.Location = new System.Drawing.Point(12, 202);
             this.AppPoolText.Name = "AppPoolText";
             this.AppPoolText.ReadOnly = true;
-            this.AppPoolText.Size = new System.Drawing.Size(348, 30);
+            this.AppPoolText.Size = new System.Drawing.Size(348, 41);
             this.AppPoolText.TabIndex = 23;
             // 
             // label3
@@ -72,7 +72,7 @@
             this.label3.Location = new System.Drawing.Point(8, 176);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(190, 23);
+            this.label3.Size = new System.Drawing.Size(291, 34);
             this.label3.TabIndex = 22;
             this.label3.Text = "アプリケーションプール名";
             // 
@@ -82,7 +82,7 @@
             this.AppsCombo.FormattingEnabled = true;
             this.AppsCombo.Location = new System.Drawing.Point(12, 110);
             this.AppsCombo.Name = "AppsCombo";
-            this.AppsCombo.Size = new System.Drawing.Size(348, 31);
+            this.AppsCombo.Size = new System.Drawing.Size(348, 42);
             this.AppsCombo.TabIndex = 21;
             this.AppsCombo.SelectedIndexChanged += new System.EventHandler(this.AppsCombo_SelectedIndexChanged);
             // 
@@ -92,7 +92,7 @@
             this.label2.Location = new System.Drawing.Point(13, 84);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 23);
+            this.label2.Size = new System.Drawing.Size(222, 34);
             this.label2.TabIndex = 20;
             this.label2.Text = "アプリケーション名";
             // 
@@ -102,7 +102,7 @@
             this.SitesCombo.FormattingEnabled = true;
             this.SitesCombo.Location = new System.Drawing.Point(12, 34);
             this.SitesCombo.Name = "SitesCombo";
-            this.SitesCombo.Size = new System.Drawing.Size(292, 31);
+            this.SitesCombo.Size = new System.Drawing.Size(292, 42);
             this.SitesCombo.TabIndex = 19;
             this.SitesCombo.SelectedIndexChanged += new System.EventHandler(this.SitesCombo_SelectedIndexChanged);
             // 
@@ -112,13 +112,13 @@
             this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 23);
+            this.label1.Size = new System.Drawing.Size(107, 34);
             this.label1.TabIndex = 18;
             this.label1.Text = "サイト名";
             // 
-            // Form1
+            // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 34F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(510, 364);
             this.Controls.Add(this.AppPoolUserText);
@@ -131,8 +131,8 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "IIS Permission";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
