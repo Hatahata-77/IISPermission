@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Microsoft.Web.Administration;
 using System.Security;
 using System.Security.AccessControl;
+using System.IO;
+using System.Windows.Forms.VisualStyles;
 
 namespace WindowsFormsApp20
 {
@@ -64,15 +66,70 @@ namespace WindowsFormsApp20
                     AppPoolUserText.Text = appPool.ProcessModel.IdentityType.ToString();
                     password = appPool.ProcessModel.Password;
                 }
-                var virtialDirectory = app.VirtualDirectories.Where(x => x.Path.Equals("/"));
+                var virtialDirectory = app.VirtualDirectories.Where(x => x.Path.Equals("/")).FirstOrDefault().PhysicalPath;
                 var testFileName = $"{typeof(Form1).Assembly.GetName()}_WriteTest.txt";
                 var userName = appPool.ProcessModel.UserName;
                 var domain = "";
-                if (userName.Contains($"\\")) {
-                    domain = userName.Split('\\')(0);
-
+                if (userName.Contains("\\")) {
+                    domain = userName.Split("\\".ToCharArray())[0];
+                    userName = userName.Split("\\".ToCharArray())[1];
                 }
+                var passwordSecureString = new System.Security.SecureString();
+                foreach (var c in password)
+                {
+                    passwordSecureString.AppendChar(c);
+                }
+                try
+                {
+                    using (var process = new System.Diagnostics.Process())
+                    {
+                        process.StartInfo.FileName = "cmd.exe";
+                        process.StartInfo.WorkingDirectory = virtialDirectory;
+                        process.StartInfo.Arguments = $"/c echo a>{testFileName}";
+                        process.StartInfo.UserName = userName;
+                        process.StartInfo.Password = passwordSecureString;
+                        process.StartInfo.Domain = domain;
+                        process.StartInfo.UseShellExecute = false;
+                        process.StartInfo.CreateNoWindow = true;
+                        process.Start();
+                        process.WaitForExit();
+                        if (process.ExitCode == 0)
+                        {
+                            try
+                            {
+                                process.StartInfo.Arguments = $"/c del {testFileName}";
+                                process.Start();
+                                process.WaitForExit();
+                                if (!File.Exists(Path.Combine(virtialDirectory, testFileName)))
+                                {
+                                    MessageBox.Show("OK");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("実行ユーザーでフォルダーに書き込みはできましたが削除はできませんでした。");
+                                    try
+                                    {
+                                        File.Delete(Path.Combine(virtialDirectory, testFileName));
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        //ここでのエラーは無視します。
+                                    }
+                                }
+                            }
+                            catch(Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
 
+                        } else {
+                            MessageBox.Show("実行ユーザーではフォルダへ書き込みできませんでした。");
+                        }
+                    }   
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("実行ユーザーではフォルダへ書き込みできませんでした。\n\n" + ex.Message);
+                }
             }
         }
     }
